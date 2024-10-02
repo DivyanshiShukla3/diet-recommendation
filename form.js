@@ -103,7 +103,8 @@ async function getRecipes(calories, protein, fat, dietType) {
         diet: dietType,
         number: 30, // Fetch more recipes
         cuisine: 'Indian',
-        addRecipeInformation: true
+        addRecipeInformation: true,
+        maxReadyTime: 100
     });
 
     const response = await fetch(`${url}?${params}`);
