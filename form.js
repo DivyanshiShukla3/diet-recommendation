@@ -48,6 +48,39 @@ document.getElementById('dietForm').addEventListener('submit', async function (e
         console.error('No recipes found.');
     }
 });
+// Real-time validation for name input
+const nameInput = document.getElementById('name');
+nameInput.addEventListener('input', function () {
+    if (!nameInput.value.trim()) {
+        nameInput.setCustomValidity('Please enter your name');
+    } else {
+        nameInput.setCustomValidity('');
+    }
+});
+
+// Age validation to ensure it's above 0
+const ageInput = document.getElementById('age');
+ageInput.addEventListener('input', function () {
+    if (ageInput.value <= 0) {
+        ageInput.setCustomValidity('Age must be above 0');
+    } else {
+        ageInput.setCustomValidity('');
+    }
+});
+
+// Height and weight validation for valid numeric values
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+
+[heightInput, weightInput].forEach(input => {
+    input.addEventListener('input', function () {
+        if (isNaN(input.value) || input.value <= 0) {
+            input.setCustomValidity('Please enter a valid number');
+        } else {
+            input.setCustomValidity('');
+        }
+    });
+});
 
 // Functions to handle the calculations
 function calculateBmr(weight, height, age, gender) {
